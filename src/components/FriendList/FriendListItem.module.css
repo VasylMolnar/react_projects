@@ -1,0 +1,19 @@
+.status {
+  display: block;
+
+  width: 15px;
+  height: 15px;
+  margin-right: 20px;
+
+  border-radius: 50%;
+}
+
+.status__true {
+  composes: status;
+  background-color: #1b9c26;
+}
+
+.status__false {
+  composes: status;
+  background-color: #a82929;
+}
