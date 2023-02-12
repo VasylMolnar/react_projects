@@ -64,10 +64,6 @@
       "last 1 safari version"
     ]
   },
-  "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.{js,css,md}": "prettier --write"
-  },
   "main": "index.js",
   "devDependencies": {},
   "repository": {
