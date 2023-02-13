@@ -1,20 +1,14 @@
-import { React, useState, useMemo } from 'react';
+import { React, useMemo } from 'react';
 import css from './Statistics.module.css';
 import Typography from '@mui/material/Typography';
 
 const Statistics = ({ feedbacks }) => {
-  const [countTotalFeedback, setTotalFeedback] = useState(0);
-
-  useMemo(() => {
+  const countTotalFeedback = useMemo(() => {
     const { good, neutral, bad } = feedbacks;
-    setTotalFeedback(good + neutral + bad);
+    return good + neutral + bad;
   }, [feedbacks]);
 
-  if (countTotalFeedback === 0) {
-    return <p>There is no feedback</p>;
-  }
-
-  const countPositiveFeedback = () => {
+  const countPositiveFeedback = useMemo(() => {
     const goodFeedback = feedbacks.good;
     let result = 0;
 
@@ -23,7 +17,11 @@ const Statistics = ({ feedbacks }) => {
     }
 
     return `${result}%`;
-  };
+  }, [countTotalFeedback, feedbacks]);
+
+  if (countTotalFeedback === 0) {
+    return <p>There is no feedback</p>;
+  }
 
   return (
     <section className={css.statistics}>
@@ -50,7 +48,7 @@ const Statistics = ({ feedbacks }) => {
 
         <li>
           <Typography variant="h5" color="success">
-            Positive Feedback:{countPositiveFeedback()}
+            Positive Feedback:{countPositiveFeedback}
           </Typography>
         </li>
       </ul>
