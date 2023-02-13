@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+## Phone book
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Write a phone book contact storage application.
 
-## Available Scripts
+## Step 1
 
-In the project directory, you can run:
+The application should consist of a form and a list of contacts. At the current
+step, implement add a contact name and display the contact list. The application
+must not save contacts between different sessions (page refresh). Every contact
+must be an object with name and id properties. To generate IDs use any suitable
+package.
 
-### `npm start`
+## Step 2
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Expand the functionality of the application by allowing users to add numbers
+phones. To do this, add <input type="tel"> to the form, and a property to store
+its values are in the state.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Step 3
 
-### `npm test`
+Add a search field that can be used to filter your contact list by name.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- The search field is an input without a form, the value of which is written to
+  the state (controlled element).
+- Filtering logic must be case insensitive.
 
-### `npm run build`
+## Step 4
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+If your application is implemented in a single <App> component, refactor
+separating the appropriate parts into separate components. In root state the
+<App> component will retain only the contacts and filter properties. Enough
+highlight four components: a form for adding contacts, a list of contacts,
+contact list element and search filter.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Step 5
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Prevent the user from adding contacts whose names are already in phone book.
+When you try to perform such an action, display an alert with warning.
 
-### `npm run eject`
+## Step 6
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Expand the functionality of the application by allowing the user to delete
+previously saved contacts.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![](img/1.png)
