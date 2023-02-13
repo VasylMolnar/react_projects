@@ -46,4 +46,4 @@ rendered only after how at least one review was collected. Missing statistics
 message move it to the `<Notification>` component.
 
 
-![](img/Знімок екрана 2023-02-13 о 11.04.09.png)
+![](img/1.png)
