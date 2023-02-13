@@ -1,26 +1,58 @@
-import React from 'react';
+import { React, useState, useMemo } from 'react';
 import css from './Statistics.module.css';
-import uploadStats from '../../data/uploadStats.json';
+import Typography from '@mui/material/Typography';
 
-function randomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
+const Statistics = ({ feedbacks }) => {
+  const [countTotalFeedback, setTotalFeedback] = useState(0);
 
-const Statistics = () => {
+  useMemo(() => {
+    const { good, neutral, bad } = feedbacks;
+    setTotalFeedback(good + neutral + bad);
+  }, [feedbacks]);
+
+  if (countTotalFeedback === 0) {
+    return <p>There is no feedback</p>;
+  }
+
+  const countPositiveFeedback = () => {
+    const goodFeedback = feedbacks.good;
+    let result = 0;
+
+    if (countTotalFeedback > 0) {
+      result = Math.ceil((goodFeedback / countTotalFeedback) * 100);
+    }
+
+    return `${result}%`;
+  };
+
   return (
     <section className={css.statistics}>
-      <h1>Upload stats</h1>
-      <ul className={css.statList}>
-        {uploadStats.map(({ id, label, percentage }) => (
-          <li
-            className={css.item}
-            key={id}
-            style={{ backgroundColor: randomHexColor() }}
-          >
-            <span className={css.label}>{label}</span>
-            <span className={css.percentage}>{percentage} %</span>
+      <h1 className={css.title}>Statistics</h1>
+
+      <ul style={{ listStyleType: 'none' }}>
+        {Object.entries(feedbacks).map(el => (
+          <li key={el[0]} style={{ display: 'flex' }}>
+            <Typography variant="h5" style={{ textTransform: 'uppercase' }}>
+              {el[0]}:
+            </Typography>
+
+            <Typography variant="h5" color="primary">
+              {el[1]}
+            </Typography>
           </li>
         ))}
+
+        <li>
+          <Typography variant="h5" color="success">
+            Total: {countTotalFeedback}
+          </Typography>
+        </li>
+
+        <li>
+          <Typography variant="h5" color="success">
+            Positive Feedback:{countPositiveFeedback()}
+          </Typography>
+        </li>
       </ul>
     </section>
   );

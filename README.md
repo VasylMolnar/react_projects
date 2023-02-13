@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Feedback Widget
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Like most companies, Expresso collects feedback from its customers. Your task is
+to create an application for collecting statistics. There are only three options
+feedback: good, neutral and bad.
 
-## Available Scripts
+## Step 1
 
-In the project directory, you can run:
+The app should display the number of reviews collected for each category. The
+application should not save feedback statistics between different sessions (page
+refresh).
 
-### `npm start`
+The application state must be of the following form, add new properties cannot
+be.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+state = {
+  good: 0,
+  neutral: 0,
+  bad: 0
+}
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Step 2
 
-### `npm test`
+Expand the functionality of the application so that the interface displays more
+statistics about the collected reviews. Add a display of the total number of
+collected reviews from all categories and the percentage of positive reviews. To
+do this, create helper methods that calculate these values based on data in
+state (calculated data).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Step 3
 
-### `npm run build`
+Refactor the application. Application state should remain in root component
+`<App>`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Move the display of statistics to a separate component
+- Move the block of buttons to the component
+- Create a `<Section>` component that renders a section with a title and
+  children (children)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Step 4
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Extend the functionality of the application so that the statistics block is
+rendered only after how at least one review was collected. Missing statistics
+message move it to the `<Notification>` component.

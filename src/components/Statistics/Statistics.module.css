@@ -1,7 +1,11 @@
+.statistics {
+  margin-top: 5rem;
+}
+
 .title {
   text-transform: uppercase;
-  color: #ccc;
-  margin-bottom: 30px;
+  color: #2a0808;
+  margin-bottom: 50px;
 }
 
 .statList {
@@ -21,6 +25,6 @@
 }
 
 .label {
-  font-size: 12px;
+  font-size: 23px;
   margin-bottom: 10px;
 }
