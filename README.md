@@ -44,3 +44,6 @@ Refactor the application. Application state should remain in root component
 Extend the functionality of the application so that the statistics block is
 rendered only after how at least one review was collected. Missing statistics
 message move it to the `<Notification>` component.
+
+
+![] (img/1.png)
