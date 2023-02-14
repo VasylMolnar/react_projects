@@ -1,58 +1,25 @@
-import React, { useMemo, useState } from 'react';
-import { Typography } from '@mui/material';
-import ContactForm from './components/ContactForm/ContactForm';
-import Search from './components/Search/Search';
+import React, { useEffect, useMemo, useState } from 'react';
+import SearchCard from './components/Search/SearchCard';
 import ContactList from './components/ContactList/ContactList';
+import useFetch from './hooks/useFetch';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 function App() {
-  const [list, setList] = useState([
-    { id: 1, name: 'test1', phone: '123' },
-    { id: 2, name: 'test2', phone: '1223' },
-    { id: 3, name: 'test3', phone: '123123' },
-  ]);
   const [search, setSearch] = useState('');
-
-  const sortList = useMemo(() => {
-    return list.filter(post => {
-      return post.name.toLowerCase().includes(search.toLowerCase());
-    });
-  }, [list, search]);
-
-  const handleDelete = id => {
-    setList(list.filter(post => post.id !== id));
-  };
+  const [page, setPage] = useState(1);
+  const { items, fetchError, isLoading } = useFetch(search, page);
 
   return (
-    <div
-      className="App"
-      style={{
-        maxWidth: '700px',
-        margin: 'auto',
-        border: '1px solid black',
-        padding: '30px',
-        minHeight: '100vh',
-      }}
-    >
-      <Typography
-        variant="h3"
-        color="primary"
-        style={{ margin: '30px 0px', fontWeight: '700' }}
-      >
-        <span style={{ color: 'black' }}>PHONE</span>BOOK
-      </Typography>
+    <div className="App">
+      <SearchCard search={search} setSearch={setSearch} />
 
-      <ContactForm list={list} setList={setList} />
-
-      <Typography
-        variant="h3"
-        color="primary"
-        style={{ margin: '30px 0px', fontWeight: '700' }}
-      >
-        Contacts List
-      </Typography>
-
-      <Search setSearch={setSearch} />
-      <ContactList handleDelete={handleDelete} sortList={sortList} />
+      {isLoading && Loading.dots('Loading...')}
+      {fetchError && Report.failure('', fetchError)}
+      {!isLoading &&
+        !fetchError &&
+        (Loading.remove(500),
+        (<ContactList items={items} setPage={setPage} />))}
     </div>
   );
 }
