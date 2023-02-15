@@ -8,18 +8,24 @@ import { Report } from 'notiflix/build/notiflix-report-aio';
 function App() {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
-  const { items, fetchError, isLoading } = useFetch(search, page);
+  const [isLoading, setIsLoading] = useState(true);
+  const { items, fetchError, totalHits } = useFetch(search, page, setIsLoading);
 
   return (
     <div className="App">
-      <SearchCard search={search} setSearch={setSearch} />
-
+      <SearchCard
+        setSearch={setSearch}
+        setIsLoading={setIsLoading}
+        setPage={setPage}
+      />
       {isLoading && Loading.dots('Loading...')}
       {fetchError && Report.failure('', fetchError)}
       {!isLoading &&
         !fetchError &&
-        (Loading.remove(500),
-        (<ContactList items={items} setPage={setPage} />))}
+        (Loading.remove(1000),
+        (
+          <ContactList items={items} setPage={setPage} totalHits={totalHits} />
+        ))}
     </div>
   );
 }

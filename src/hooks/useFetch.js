@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react';
 import fetchCards from '../services/fetchCards';
 
-const useFetch = (search, page) => {
+const useFetch = (search, page, setIsLoading) => {
   const [items, setItems] = useState([]);
+  const [totalHits, setTotalHits] = useState(0);
   const [fetchError, setFetchError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
         const response = await fetchCards(search, page);
-        setItems(response.hits);
+        page >= 2
+          ? setItems([...items, ...response.hits])
+          : setItems(response.hits);
+
+        setTotalHits(response.totalHits);
         setFetchError(null);
       } catch (e) {
         setFetchError(e.message);
@@ -19,12 +23,10 @@ const useFetch = (search, page) => {
       }
     };
 
-    setTimeout(() => {
-      fetchItems();
-    }, 1300);
-  }, [search, page]);
+    fetchItems();
+  }, [search, page, setIsLoading]);
 
-  return { items, fetchError, isLoading };
+  return { items, fetchError, totalHits };
 };
 
 export default useFetch;

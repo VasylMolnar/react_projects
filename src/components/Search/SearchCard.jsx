@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, React } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -6,6 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -49,9 +50,37 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const SearchCard = ({ search, setSearch }) => {
+const SearchCard = ({ setSearch, setIsLoading, setPage }) => {
+  const [prevSearchValue, setPrevSearchValue] = useState('');
+
+  const onSubmit = e => {
+    e.preventDefault();
+    const searchValue = e.currentTarget.elements.input.value;
+
+    if (searchValue === prevSearchValue) {
+      toast('Nothing has changed', {
+        icon: '👏',
+      });
+      return;
+    }
+
+    if (searchValue.trim() === '') {
+      toast.error('Enter a search term.');
+      return;
+    }
+
+    setPrevSearchValue(searchValue);
+    setPage(1);
+    setIsLoading(true);
+    setSearch(searchValue);
+  };
+
   return (
-    <div style={{ position: 'relative', width: '100%', height: '70px' }}>
+    <form
+      style={{ position: 'relative', width: '100%', height: '70px' }}
+      onSubmit={e => onSubmit(e)}
+    >
+      <Toaster position="bottom-right" reverseOrder={false} />
       <Box sx={{ flexGrow: 1 }} style={{ position: 'fixed', width: '100%' }}>
         <AppBar position="static">
           <Toolbar>
@@ -71,14 +100,13 @@ const SearchCard = ({ search, setSearch }) => {
               <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ 'aria-label': 'search' }}
-                value={search}
-                onChange={e => setSearch(e.target.value)}
+                name="input"
               />
             </Search>
           </Toolbar>
         </AppBar>
-      </Box>{' '}
-    </div>
+      </Box>
+    </form>
   );
 };
 
