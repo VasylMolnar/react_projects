@@ -5,11 +5,9 @@ import Search from './components/Search/Search';
 import ContactList from './components/ContactList/ContactList';
 
 function App() {
-  const [list, setList] = useState([
-    { id: 1, name: 'test1', phone: '123' },
-    { id: 2, name: 'test2', phone: '1223' },
-    { id: 3, name: 'test3', phone: '123123' },
-  ]);
+  const [list, setList] = useState(
+    JSON.parse(localStorage.getItem('contact')) || []
+  );
   const [search, setSearch] = useState('');
 
   const sortList = useMemo(() => {
@@ -19,7 +17,9 @@ function App() {
   }, [list, search]);
 
   const handleDelete = id => {
-    setList(list.filter(post => post.id !== id));
+    const contact = list.filter(post => post.id !== id);
+    localStorage.setItem('contact', JSON.stringify(contact));
+    setList(contact);
   };
 
   return (
@@ -52,7 +52,12 @@ function App() {
       </Typography>
 
       <Search setSearch={setSearch} />
-      <ContactList handleDelete={handleDelete} sortList={sortList} />
+
+      {sortList.length ? (
+        <ContactList handleDelete={handleDelete} sortList={sortList} />
+      ) : (
+        <p>Contact list is empty.</p>
+      )}
     </div>
   );
 }

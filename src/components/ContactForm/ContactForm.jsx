@@ -7,15 +7,16 @@ const ContactForm = ({ list, setList }) => {
       <form
         onSubmit={e => {
           e.preventDefault();
-          setList([
+          const contact = [
             ...list,
             {
               id: nanoid(),
               name: e.currentTarget.elements.name.value,
               phone: e.currentTarget.elements.phone.value,
             },
-          ]);
-
+          ];
+          localStorage.setItem('contact', JSON.stringify(contact));
+          setList(contact);
           e.currentTarget.reset();
         }}
       >
