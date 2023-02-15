@@ -57,3 +57,5 @@ whatever another.
 Clicking on a gallery item should open a modal window with a dark overlay and
 display a larger version of the image. The modal should close by pressing the
 `ESC` key or by clicking on the overlay.
+
+![](img/1.png)
