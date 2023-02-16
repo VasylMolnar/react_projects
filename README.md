@@ -1,10 +1,13 @@
 # Phone book (Redux - createAsyncThunk)
 
+# createSelector, createEntityAdapter (react_redux_tollkit)
+
 Refactor the Phone Book application code. Delete the code responsible for
 storing and reading contacts from local storage and add work with backend to
 store contacts.
 
 Create a development backend with a UI service [mockapi.io](https://mockapi.io).
+or JSON - Server
 
 Create a `contacts` resource to get the `/contacts` endpoint. Use resource
 constructor and describe the contact object as in the illustration.

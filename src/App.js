@@ -1,14 +1,23 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { Typography } from '@mui/material';
 import ContactForm from './components/ContactForm/ContactForm';
 import Search from './components/Search/Search';
 import ContactList from './components/ContactList/ContactList';
-import { useSelector } from 'react-redux';
-import { getAllContact, getSearchValue } from './features/contact/contactSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  getAllContact,
+  getSearchValue,
+  getFetchError,
+  getStatus,
+} from './features/contact/contactSlice';
+import { fetchContact } from './features/contact/contactSlice';
 
 function App() {
+  const dispatch = useDispatch();
   const list = useSelector(getAllContact);
   const search = useSelector(getSearchValue);
+  const status = useSelector(getStatus);
+  const error = useSelector(getFetchError);
 
   const sortList = useMemo(() => {
     return list.filter(post => {
@@ -48,7 +57,7 @@ function App() {
       <Search />
 
       {sortList.length ? (
-        <ContactList sortList={sortList} />
+        <ContactList sortList={list} />
       ) : (
         <p>Contact list is empty.</p>
       )}

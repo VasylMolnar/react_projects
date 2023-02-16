@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../features/contact/contactSlice';
+import { apiRequest } from '../../features/contact/contactSlice';
+import { nanoid } from 'nanoid';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -11,10 +12,22 @@ const ContactForm = () => {
         onSubmit={e => {
           e.preventDefault();
           const contact = {
+            id: nanoid(),
             name: e.currentTarget.elements.name.value,
             phone: e.currentTarget.elements.phone.value,
           };
-          dispatch(addContact(contact));
+
+          const option = {
+            url: `/contact`,
+            method: 'post',
+            name: 'create',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(contact),
+          };
+
+          dispatch(apiRequest(option));
           e.currentTarget.reset();
         }}
       >
