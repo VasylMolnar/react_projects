@@ -1,17 +1,17 @@
 import React, { useMemo, useEffect } from 'react';
 import { Typography } from '@mui/material';
-import ContactForm from './components/ContactForm/ContactForm';
-import Search from './components/Search/Search';
-import ContactList from './components/ContactList/ContactList';
+import ContactForm from '../components/ContactForm/ContactForm';
+import Search from '../components/Search/Search';
+import ContactList from '../components/ContactList/ContactList';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   getAllContact,
   getFetchError,
   getStatus,
-} from './features/contact/contactSlice';
+} from '../features/contact/contactSlice';
 import { Loading, Report, Notify } from 'notiflix';
 
-function App() {
+const Home = () => {
   const status = useSelector(getStatus);
   const error = useSelector(getFetchError);
 
@@ -53,14 +53,6 @@ function App() {
         (Loading.remove(500), (<ContactList />))}
     </div>
   );
-}
+};
 
-export default App;
-
-/*
-{orderedContactsIds.length ? (
-        <ContactList orderedContactsIds={orderedContactsIds} />
-      ) : (
-        <p>Contact list is empty.</p>
-      )}
-      */
+export default Home;

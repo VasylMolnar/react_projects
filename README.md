@@ -1,5 +1,9 @@
 # Phone book (Redux - RTK Query)
 
+# this folder we not change contact(createAsyncThunk) (api post.js)
+
+# in this folder we create RTK Query auth( RTK Query) (features we add folder (api apiSlice.js))
+
 # createSelector, createEntityAdapter (react_redux_tollkit)
 
 Refactor the Phone Book application code. Delete the code responsible for
