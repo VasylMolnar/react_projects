@@ -1,26 +1,20 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { Typography } from '@mui/material';
 import ContactForm from './components/ContactForm/ContactForm';
 import Search from './components/Search/Search';
 import ContactList from './components/ContactList/ContactList';
+import { useSelector } from 'react-redux';
+import { getAllContact, getSearchValue } from './features/contact/contactSlice';
 
 function App() {
-  const [list, setList] = useState(
-    JSON.parse(localStorage.getItem('contact')) || []
-  );
-  const [search, setSearch] = useState('');
+  const list = useSelector(getAllContact);
+  const search = useSelector(getSearchValue);
 
   const sortList = useMemo(() => {
     return list.filter(post => {
       return post.name.toLowerCase().includes(search.toLowerCase());
     });
   }, [list, search]);
-
-  const handleDelete = id => {
-    const contact = list.filter(post => post.id !== id);
-    localStorage.setItem('contact', JSON.stringify(contact));
-    setList(contact);
-  };
 
   return (
     <div
@@ -41,7 +35,7 @@ function App() {
         <span style={{ color: 'black' }}>PHONE</span>BOOK
       </Typography>
 
-      <ContactForm list={list} setList={setList} />
+      <ContactForm />
 
       <Typography
         variant="h3"
@@ -51,10 +45,10 @@ function App() {
         Contacts List
       </Typography>
 
-      <Search setSearch={setSearch} />
+      <Search />
 
       {sortList.length ? (
-        <ContactList handleDelete={handleDelete} sortList={sortList} />
+        <ContactList sortList={sortList} />
       ) : (
         <p>Contact list is empty.</p>
       )}

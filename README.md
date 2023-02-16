@@ -1,4 +1,4 @@
-# Phone book
+# Phone book (Redux)
 
 Refactor the Phonebook application code to add a control state using the library
 [Redux Toolkit](https://redux-toolkit.js.org/).
@@ -21,3 +21,5 @@ Let the Redux state look like this.
   `createSlice()`.
 - Bind React Components to Redux Logic with Library Hooks
   [react-redux](https://react-redux.js.org/).
+
+![](img/1.png)

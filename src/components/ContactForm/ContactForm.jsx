@@ -1,22 +1,20 @@
 import React from 'react';
-import { nanoid } from 'nanoid';
+import { useDispatch } from 'react-redux';
+import { addContact } from '../../features/contact/contactSlice';
 
-const ContactForm = ({ list, setList }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
   return (
     <>
       <form
         onSubmit={e => {
           e.preventDefault();
-          const contact = [
-            ...list,
-            {
-              id: nanoid(),
-              name: e.currentTarget.elements.name.value,
-              phone: e.currentTarget.elements.phone.value,
-            },
-          ];
-          localStorage.setItem('contact', JSON.stringify(contact));
-          setList(contact);
+          const contact = {
+            name: e.currentTarget.elements.name.value,
+            phone: e.currentTarget.elements.phone.value,
+          };
+          dispatch(addContact(contact));
           e.currentTarget.reset();
         }}
       >

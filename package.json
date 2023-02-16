@@ -30,6 +30,7 @@
     "react-icons": "^4.7.1",
     "react-loader-spinner": "^5.3.4",
     "react-player": "^2.11.2",
+    "react-redux": "^8.0.5",
     "react-router": "^6.8.1",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
@@ -53,6 +54,10 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "lint-staged": {
+    "*.{js,jsx}": "eslint --cache --fix",
+    "*.{js,jsx,css,md}": "prettier --write"
   },
   "browserslist": {
     "production": [

@@ -1,14 +1,16 @@
 import React from 'react';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
-
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../features/contact/contactSlice';
 
-const ContactList = ({ sortList, handleDelete }) => {
+const ContactList = ({ sortList }) => {
+  const dispatch = useDispatch();
+
   return (
     <ul>
       {sortList.map(el => (
@@ -33,7 +35,7 @@ const ContactList = ({ sortList, handleDelete }) => {
             <CardActions>
               <Chip
                 label="Delete User"
-                onDelete={() => handleDelete(el.id)}
+                onDelete={() => dispatch(deleteContact(el))}
                 deleteIcon={<DeleteIcon />}
                 variant="outlined"
                 color="error"
