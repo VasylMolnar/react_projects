@@ -17,4 +17,4 @@ use the function
 [RTK Query](https://redux-toolkit.js.org/rtk-query/overview) for interaction
 with backend and asynchronous requests.
 
-![](img/1.png)
+![](img/1.png) ![](img/2.png)
