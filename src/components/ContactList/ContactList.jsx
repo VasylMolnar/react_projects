@@ -1,11 +1,20 @@
-import React from 'react';
+import { useMemo, React } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCount, addCount } from '../../features/contact/contactSlice';
+import {
+  getCount,
+  addCount,
+  selectContactsIds,
+  getSearchValue,
+} from '../../features/contact/contactSlice';
 import CardElement from './CardElement';
+import useSort from '../../hooks/useSort';
 
-const ContactList = ({ sortList }) => {
+const ContactList = () => {
   const dispatch = useDispatch();
   const count = useSelector(getCount);
+  const orderedContactsIds = useSelector(selectContactsIds);
+  const search = useSelector(getSearchValue);
+  const sortList = useSort(orderedContactsIds, search);
 
   return (
     <>
@@ -25,8 +34,8 @@ const ContactList = ({ sortList }) => {
       </div>
 
       <ul>
-        {sortList.map(el => (
-          <CardElement id={el.id} />
+        {sortList.map(contact => (
+          <CardElement contactId={contact.id} key={contact.id} />
         ))}
       </ul>
     </>

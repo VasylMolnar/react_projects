@@ -8,12 +8,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   apiRequest,
-  getContactById,
+  selectContactById,
 } from '../../features/contact/contactSlice';
 
-let CardElement = ({ id }) => {
+let CardElement = ({ contactId }) => {
   const dispatch = useDispatch();
-  const post = useSelector(state => getContactById(state, id));
+  const post = useSelector(state => selectContactById(state, contactId));
 
   return (
     <li key={post.id} style={{ listStyle: 'none' }}>
@@ -50,5 +50,6 @@ let CardElement = ({ id }) => {
     </li>
   );
 };
+
 CardElement = React.memo(CardElement);
 export default CardElement;

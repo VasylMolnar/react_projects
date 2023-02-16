@@ -6,24 +6,14 @@ import ContactList from './components/ContactList/ContactList';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   getAllContact,
-  getSearchValue,
   getFetchError,
   getStatus,
 } from './features/contact/contactSlice';
-import { fetchContact } from './features/contact/contactSlice';
+import { Loading, Report, Notify } from 'notiflix';
 
 function App() {
-  const dispatch = useDispatch();
-  const list = useSelector(getAllContact);
-  const search = useSelector(getSearchValue);
   const status = useSelector(getStatus);
   const error = useSelector(getFetchError);
-
-  const sortList = useMemo(() => {
-    return list.filter(post => {
-      return post.name.toLowerCase().includes(search.toLowerCase());
-    });
-  }, [list, search]);
 
   return (
     <div
@@ -56,13 +46,21 @@ function App() {
 
       <Search />
 
-      {sortList.length ? (
-        <ContactList sortList={list} />
-      ) : (
-        <p>Contact list is empty.</p>
-      )}
+      {status === 'loading' && Loading.hourglass(' Loading Items...')}
+      {error && (Report.failure('Error', `${error}`), Loading.remove())}
+      {status === 'succeeded' &&
+        !error &&
+        (Loading.remove(500), (<ContactList />))}
     </div>
   );
 }
 
 export default App;
+
+/*
+{orderedContactsIds.length ? (
+        <ContactList orderedContactsIds={orderedContactsIds} />
+      ) : (
+        <p>Contact list is empty.</p>
+      )}
+      */

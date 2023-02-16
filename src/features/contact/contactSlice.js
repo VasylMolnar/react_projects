@@ -115,8 +115,8 @@ length: 3
 */
 export const {
   selectAll: getAllContact,
-  selectById: getContactById,
-  selectIds: getContactsIds,
+  selectById: selectContactById,
+  selectIds: selectContactsIds,
   // Pass in a selector that returns the posts slice of state
 } = postsAdapter.getSelectors(state => state.contact);
 
