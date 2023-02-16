@@ -1,4 +1,4 @@
-# Phone book (Redux - createAsyncThunk)
+# Phone book (Redux - RTK Query)
 
 # createSelector, createEntityAdapter (react_redux_tollkit)
 
