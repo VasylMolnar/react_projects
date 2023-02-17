@@ -18,6 +18,13 @@
       "password": "1234567",
       "id": "OU233Van_E3VGhifTdJVL",
       "isLoggedIn": false
+    },
+    {
+      "name": "Success132",
+      "email": "Success12312@gmail.com",
+      "password": "Success123",
+      "id": "daqgrh8fgzenEUBY0u8K_",
+      "isLoggedIn": false
     }
   ]
 }

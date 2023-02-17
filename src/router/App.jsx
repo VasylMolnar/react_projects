@@ -6,6 +6,7 @@ import { privateRoutes, publicRoutes } from './index';
 
 import store from '../app/store';
 import { fetchContact } from '../features/contact/contactOperations';
+import Nav from '../components/Nav/Nav';
 
 function App() {
   const isAuth = false;
@@ -18,16 +19,21 @@ function App() {
     <Provider store={store}>
       {isAuth ? (
         <Routes>
-          {privateRoutes.map(route => (
-            <Route path={route.path} element={route.element} key={route} />
-          ))}
+          <Route path="" element={<Nav />}>
+            {privateRoutes.map(route => (
+              <Route path={route.path} element={route.element} key={route} />
+            ))}
+          </Route>
           <Route path="*" element={<Missing />} />
         </Routes>
       ) : (
         <Routes>
-          {publicRoutes.map(route => (
-            <Route path={route.path} element={route.element} key={route} />
-          ))}
+          <Route path="" element={<Nav />}>
+            {publicRoutes.map(route => (
+              <Route path={route.path} element={route.element} key={route} />
+            ))}
+          </Route>
+
           <Route path="*" element={<Missing />} />
         </Routes>
       )}

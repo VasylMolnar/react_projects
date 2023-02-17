@@ -1,6 +1,7 @@
 import Home from '../pages/Home';
 import RegisterPage from '../pages/RegisterPage';
 import LoginPage from '../pages/LoginPage';
+import UserPage from '../pages/UserPage';
 
 export const privateRoutes = [
   {
@@ -19,6 +20,11 @@ export const publicRoutes = [
   {
     path: '/register',
     element: <RegisterPage />,
+    exact: true,
+  },
+  {
+    path: '/user/:id',
+    element: <UserPage />,
     exact: true,
   },
 ];

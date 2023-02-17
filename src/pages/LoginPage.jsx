@@ -75,7 +75,7 @@ function LoginPage() {
                 size="large"
                 style={{ marginRight: '10px' }}
               >
-                {isSubmitting ? '...' : 'Login'}
+                Login
               </Button>
               <Button
                 variant="contained"
@@ -98,6 +98,6 @@ function LoginPage() {
 
 export default LoginPage;
 /*  {props => {
-          console.log('', props);
-          <></>;
-        }} */
+    console.log('', props);
+    <></>;
+}} */

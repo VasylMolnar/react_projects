@@ -1,14 +1,27 @@
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-//import operations from 'redux/auth/auth-operations';
+import { useGetUsersQuery } from '../features/auth/authSlice';
+import { Report } from 'notiflix';
 
 const useLoginUser = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { data: users } = useGetUsersQuery();
+
+  const validationUser = (email, password) => {
+    return users.find(user => {
+      return user.email === email && user.password === password;
+    });
+  };
 
   const onSubmitForm = ({ email, password }) => {
-    //dispatch(operations.loginUser({ email, password }));
-    navigate('/contacts');
+    const user = validationUser(email, password);
+    localStorage.setItem('userId', user.id);
+
+    user
+      ? navigate(`/user/${user.id}`)
+      : Report.failure(
+          'User or password is incorrect.',
+          'Please enter a valid email address and password.'
+        );
   };
 
   return { onSubmitForm };

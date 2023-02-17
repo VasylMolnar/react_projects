@@ -18,9 +18,9 @@ export const authSlice = apiSlice.injectEndpoints({
           ...initialPost,
           id: nanoid(),
           isLoggedIn: false,
+          registerDate: new Date().toISOString(),
         },
       }),
-      //invalidatesTags: (result, error, arg) => [{ type: 'Post', id: arg.id }],
     }),
 
     //getAllUsers for config password and name (filter by username)
@@ -29,13 +29,15 @@ export const authSlice = apiSlice.injectEndpoints({
     }),
 
     loginUser: builder.query({
-      query: id => `/users/?userId=${id}`,
+      query: id => `/users/${id}`,
+      /*
       transformResponse: responseData => {
+        console.log(responseData);
         return postsAdapter.setAll(initialState, responseData);
       },
       providesTags: (result, error, arg) => {
         return [...result.ids.map(id => ({ type: 'Post', id }))];
-      },
+      },*/
     }),
   }),
 });
