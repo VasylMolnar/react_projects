@@ -1,12 +1,11 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Missing from '../pages/Missing';
-import Home from '../pages/Home';
+import { Route, Routes, redirect } from 'react-router-dom';
+import { privateRoutes, publicRoutes } from './index';
 
 import store from '../app/store';
 import { Provider } from 'react-redux';
 import { fetchContact } from '../features/contact/contactSlice';
-import RegisterPage from '../pages/RegisterPage';
+import Missing from '../pages/Missing';
 
 store.dispatch(fetchContact('contact'));
 
@@ -15,19 +14,21 @@ function App() {
 
   return (
     <Provider store={store}>
-      <Routes>
-        <Route path="/">
-          {isAuth ? (
-            <Route index element={<Home />} />
-          ) : (
-            <>
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/auth" element={<RegisterPage />} />
-            </>
-          )}
-        </Route>
-        <Route path="*" element={<Missing />} />
-      </Routes>
+      {isAuth ? (
+        <Routes>
+          {privateRoutes.map(route => (
+            <Route path={route.path} element={route.element} key={route} />
+          ))}
+          <Route path="*" element={<Missing />} />
+        </Routes>
+      ) : (
+        <Routes>
+          {publicRoutes.map(route => (
+            <Route path={route.path} element={route.element} key={route} />
+          ))}
+          <Route path="*" element={<Missing />} />
+        </Routes>
+      )}
     </Provider>
   );
 }
