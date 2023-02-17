@@ -6,10 +6,8 @@ import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  apiRequest,
-  selectContactById,
-} from '../../features/contact/contactSlice';
+import { apiRequest } from '../../features/contact/contactOperations';
+import { selectContactById } from '../../features/contact/contactSelectors';
 
 let CardElement = ({ contactId }) => {
   const dispatch = useDispatch();

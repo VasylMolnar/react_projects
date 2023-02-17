@@ -8,7 +8,7 @@ import {
   getAllContact,
   getFetchError,
   getStatus,
-} from '../features/contact/contactSlice';
+} from '../features/contact/contactSelectors';
 import { Loading, Report, Notify } from 'notiflix';
 
 const Home = () => {

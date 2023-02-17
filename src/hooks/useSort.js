@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { selectContactById } from '../features/contact/contactSlice';
+import { selectContactById } from '../features/contact/contactSelectors';
 
 const useSort = (contactIds, searchValue) => {
   const items = useSelector(state => {

@@ -83,7 +83,6 @@ function LoginPage() {
                 type="submit"
                 size="large"
                 onClick={() => {
-                  console.log('hi');
                   navigate('/register');
                 }}
               >

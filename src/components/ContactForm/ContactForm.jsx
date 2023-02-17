@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { apiRequest } from '../../features/contact/contactSlice';
+import { apiRequest } from '../../features/contact/contactOperations';
 import { nanoid } from 'nanoid';
 
 const ContactForm = () => {

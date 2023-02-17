@@ -6,9 +6,18 @@
       "phone": "119"
     },
     {
-      "id": "eSlwIqY8VN9KQrhoaLuXb",
-      "name": "ad1",
-      "phone": "1231"
+      "id": "4ZhVZRUcIWN7a1XNpic0R",
+      "name": "asd",
+      "phone": "123"
+    }
+  ],
+  "users": [
+    {
+      "name": "User1",
+      "email": "user1@gmail.com",
+      "password": "1234567",
+      "id": "OU233Van_E3VGhifTdJVL",
+      "isLoggedIn": false
     }
   ]
 }

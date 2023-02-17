@@ -1,16 +1,18 @@
 import React from 'react';
-import { Route, Routes, redirect } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import Missing from '../pages/Missing';
 import { privateRoutes, publicRoutes } from './index';
 
 import store from '../app/store';
-import { Provider } from 'react-redux';
-import { fetchContact } from '../features/contact/contactSlice';
-import Missing from '../pages/Missing';
-
-store.dispatch(fetchContact('contact'));
+import { fetchContact } from '../features/contact/contactOperations';
 
 function App() {
   const isAuth = false;
+
+  if (isAuth) {
+    store.dispatch(fetchContact('contact'));
+  }
 
   return (
     <Provider store={store}>

@@ -1,8 +1,8 @@
 # Phone book (Redux - RTK Query)
 
-# this folder we not change contact(createAsyncThunk) (api post.js)
+# folder (contact) we not change (createAsyncThunk) (api post.js old axios method )+ add authSelectors, authOperations ...
 
-# in this folder we create RTK Query auth( RTK Query) (features we add folder (api apiSlice.js))
+# folder (auth) we create RTK Query ( RTK Query) => (features we add folder (api apiSlice.js) in this we create RTK Query) + add authSelectors, authOperations ...
 
 # createSelector, createEntityAdapter (react_redux_tollkit)
 

@@ -2,10 +2,11 @@ import { useMemo, React } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getCount,
-  addCount,
   selectContactsIds,
   getSearchValue,
-} from '../../features/contact/contactSlice';
+} from '../../features/contact/contactSelectors.js';
+import { addCount } from '../../features/contact/contactSlice.js';
+
 import CardElement from './CardElement';
 import useSort from '../../hooks/useSort';
 

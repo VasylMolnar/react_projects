@@ -4,8 +4,13 @@ import Box from '@mui/material/Box';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import PasswordIcon from '@mui/icons-material/Password';
 import { ValidationTextField } from '../utilities/ValidationTextField';
+import { userRegisterSchema } from '../utilities/validationSchema';
+import useRegisterUser from '../hooks/useRegisterUser';
+import PersonIcon from '@mui/icons-material/Person';
 
 function RegisterPage() {
+  const { onSubmitForm } = useRegisterUser();
+
   return (
     <div
       style={{
@@ -21,17 +26,28 @@ function RegisterPage() {
       </Typography>
 
       <Formik
-        initialValues={{ name: 'jared' }}
-        onSubmit={(values, actions) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
-          }, 1000);
-        }}
+        validationSchema={userRegisterSchema}
+        initialValues={{ name: '', email: '', password: '' }}
+        onSubmit={onSubmitForm}
       >
         {({ values, handleChange, handleSubmit, isSubmitting }) => (
           <Form onSubmit={handleSubmit} style={{ marginTop: '50px' }}>
             <Box sx={{ '& > :not(style)': { m: 3 } }}>
+              <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+                <PersonIcon sx={{ color: 'action.active', mr: 1, my: 2 }} />
+
+                <ValidationTextField
+                  label="What is your name?"
+                  required
+                  variant="outlined"
+                  defaultValue="Success"
+                  type="text"
+                  name="name"
+                  onChange={handleChange}
+                  style={{ width: '500px' }}
+                />
+                <ErrorMessage name="email" component="div" />
+              </Box>
               <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                 <LocalPostOfficeIcon
                   sx={{ color: 'action.active', mr: 1, my: 2 }}
@@ -45,12 +61,10 @@ function RegisterPage() {
                   type="email"
                   name="email"
                   onChange={handleChange}
-                  value={values.email}
                   style={{ width: '500px' }}
                 />
                 <ErrorMessage name="email" component="div" />
               </Box>
-
               <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                 <PasswordIcon sx={{ color: 'action.active', mr: 1, my: 2 }} />
 
@@ -62,7 +76,6 @@ function RegisterPage() {
                   type="password"
                   name="password"
                   onChange={handleChange}
-                  value={values.password}
                   style={{ width: '500px' }}
                 />
                 <ErrorMessage name="password" component="div" />
@@ -75,7 +88,7 @@ function RegisterPage() {
               size="large"
               style={{ marginTop: '30px' }}
             >
-              {isSubmitting ? '...' : 'Login'}
+              {isSubmitting ? '...' : 'Register'}
             </Button>
           </Form>
         )}
