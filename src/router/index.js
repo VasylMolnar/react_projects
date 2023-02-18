@@ -9,6 +9,11 @@ export const privateRoutes = [
     element: <Home />,
     exact: true,
   },
+  {
+    path: '/user/:id',
+    element: <UserPage />,
+    exact: true,
+  },
 ];
 
 export const publicRoutes = [
@@ -20,11 +25,6 @@ export const publicRoutes = [
   {
     path: '/register',
     element: <RegisterPage />,
-    exact: true,
-  },
-  {
-    path: '/user/:id',
-    element: <UserPage />,
     exact: true,
   },
 ];
