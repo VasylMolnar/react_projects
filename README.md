@@ -1,5 +1,7 @@
 # Phone book (Redux - RTK Query) or other code in folder (redux)
 
+# (react_redux_tollkit)
+
 # createSelector, createEntityAdapter (react_redux_tollkit)
 
 Refactor the Phone Book application code. Delete the code responsible for
