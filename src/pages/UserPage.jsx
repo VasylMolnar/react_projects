@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useLoginUserQuery } from '../features/auth/authSlice';
 
 import Card from '@mui/material/Card';
@@ -8,14 +8,20 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import useLogoutUser from '../hooks/useLogoutUser';
 
 const UserPage = () => {
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const { data, isLoading, isSuccess, isError, error } = useLoginUserQuery(id); // this we use if we have server (in here we don't have')
   //const data = useSelector(state => selectUserById(state, id));//this we use if we safe data to postsAdapter (authSlice.js and useLoginUser.js)
 
-  const { logout } = useLogoutUser();
+  const logout = () => {
+    console.log('hi');
+    sessionStorage.clear();
+    navigate('/');
+    document.location.reload();
+  };
 
   if (!data) {
     return (
@@ -56,7 +62,7 @@ const UserPage = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small" onClick={() => logout()}>
+              <Button size="small" type="button" onClick={logout}>
                 Log Out
               </Button>
             </CardActions>

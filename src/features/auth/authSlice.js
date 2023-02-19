@@ -34,13 +34,14 @@ export const authSlice = apiSlice.injectEndpoints({
     loginUser: builder.query({
       //this we use if we have server (in here we don't have')(UserPage.jsx and useLoginUser.js)
       query: id => `/users/${id}`,
-
-      transformResponse: responseData => {
-        return { ...responseData, isLoggedIn: true };
-      },
     }),
   }),
 });
 
 export const { useGetUsersQuery, useLoginUserQuery, useRegisterUserMutation } =
   authSlice; //export function from authSlice
+
+/*
+  transformResponse: responseData => {
+        return { ...responseData, isLoggedIn: true };
+      },*/

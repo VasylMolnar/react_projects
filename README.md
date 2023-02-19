@@ -1,9 +1,5 @@
 # Phone book (Redux - RTK Query)
 
-# folder (contact) we not change (createAsyncThunk) (api post.js old axios method )+ add authSelectors, authOperations ...
-
-# folder (auth) we create RTK Query ( RTK Query) => (features we add folder (api apiSlice.js) in this we create RTK Query) + add authSelectors, authOperations ...
-
 # createSelector, createEntityAdapter (react_redux_tollkit)
 
 Refactor the Phone Book application code. Delete the code responsible for
@@ -21,4 +17,4 @@ use the function
 [RTK Query](https://redux-toolkit.js.org/rtk-query/overview) for interaction
 with backend and asynchronous requests.
 
-![](img/1.png) ![](img/2.png)
+![](img/1.png) ![](img/2.png) ![](img/3.png) ![](img/4.png)

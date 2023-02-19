@@ -67,5 +67,5 @@ const contactSlice = createSlice({
   },
 });
 
-export const { addSearch, addCount } = contactSlice.actions;
+export const { addSearch, addCount, addAuth } = contactSlice.actions;
 export default contactSlice.reducer;
