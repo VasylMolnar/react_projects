@@ -1,4 +1,4 @@
-# Phone book (Redux - RTK Query)
+# Phone book (Redux - RTK Query) or other code in folder (redux)
 
 # createSelector, createEntityAdapter (react_redux_tollkit)
 
