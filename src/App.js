@@ -1,63 +1,41 @@
-import React, { useMemo, useState } from 'react';
-import { Typography } from '@mui/material';
-import ContactForm from './components/ContactForm/ContactForm';
-import Search from './components/Search/Search';
-import ContactList from './components/ContactList/ContactList';
+import { React, lazy, Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+import Loader from './components/Loader/Loader';
+const HomePage = lazy(() => import('./page/HomePage'));
+const Cast = lazy(() => import('./page/Cast'));
+const MovieDetailsPage = lazy(() => import('./page/MovieDetailsPage'));
+const MoviePage = lazy(() => import('./page/MoviesPage'));
+const Reviews = lazy(() => import('./page/Reviews'));
+const Header = lazy(() => import('./components/Header'));
 
 function App() {
-  const [list, setList] = useState(
-    JSON.parse(localStorage.getItem('contact')) || []
-  );
-  const [search, setSearch] = useState('');
-
-  const sortList = useMemo(() => {
-    return list.filter(post => {
-      return post.name.toLowerCase().includes(search.toLowerCase());
-    });
-  }, [list, search]);
-
-  const handleDelete = id => {
-    const contact = list.filter(post => post.id !== id);
-    localStorage.setItem('contact', JSON.stringify(contact));
-    setList(contact);
-  };
-
   return (
     <div
-      className="App"
+      id="App"
       style={{
-        maxWidth: '700px',
-        margin: 'auto',
-        border: '1px solid black',
-        padding: '30px',
-        minHeight: '100vh',
+        padding: '30px 30px',
+        backgroundImage:
+          'linear-gradient(to right bottom, #051937, #0c2a51, #133d6d, #17518b, #1666a9)',
       }}
     >
-      <Typography
-        variant="h3"
-        color="primary"
-        style={{ margin: '30px 0px', fontWeight: '700' }}
-      >
-        <span style={{ color: 'black' }}>PHONE</span>BOOK
-      </Typography>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<Header />}>
+            <Route index element={<HomePage />} />
 
-      <ContactForm list={list} setList={setList} />
+            <Route path="movies">
+              <Route index element={<MoviePage />} />
 
-      <Typography
-        variant="h3"
-        color="primary"
-        style={{ margin: '30px 0px', fontWeight: '700' }}
-      >
-        Contacts List
-      </Typography>
-
-      <Search setSearch={setSearch} />
-
-      {sortList.length ? (
-        <ContactList handleDelete={handleDelete} sortList={sortList} />
-      ) : (
-        <p>Contact list is empty.</p>
-      )}
+              <Route path=":movieId">
+                <Route index element={<MovieDetailsPage />} />
+                <Route path="cast" element={<Cast />} />
+                <Route path="reviews" element={<Reviews />} />
+              </Route>
+            </Route>
+          </Route>
+        </Routes>
+      </Suspense>
     </div>
   );
 }
