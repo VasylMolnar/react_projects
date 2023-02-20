@@ -1,0 +1,15 @@
+.card {
+    padding: 3px;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+}
+
+
+.card:hover {
+    scale: 1.1;
+    background-color: rgb(58, 193, 255);
+    color: white;
+    transition: all 0.3s ease-out;
+}

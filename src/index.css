@@ -14,9 +14,7 @@ code {
 
 #App {
   color: #fff;
-  background-image:
-    linear-gradient(to right bottom, #051937, #0c2a51, #133d6d, #17518b, #1666a9);
-
+  background: no-repeat url("https://images-na.ssl-images-amazon.com/images/M/MV5BNDIwMDIxNzk3Ml5BMl5BanBnXkFtZTgwMTg0MzQ4MDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg");
   display: flex;
   flex-direction: column;
   min-height: 100vh;

@@ -1,20 +1,27 @@
-import React from 'react';
-import { Typography } from '@mui/material';
+import { React, useContext } from 'react';
+import { Report, Loading } from 'notiflix/build/notiflix-loading-aio';
+
+import MoviesList from '../components/MoviesList/MoviesList';
+import DataContext from '../context/DataContext';
+import Rating from '../components/Rating/Rating';
 
 const HomePage = () => {
+  const { movies, isLoading, fetchError } = useContext(DataContext);
+
   return (
     <section className="HomePage section">
-      <Typography variant="h2" component="h2">
-        GODZILLA
-      </Typography>
-      <Typography variant="p" component="p">
-        KING OF THE MONSTERS
-      </Typography>
-      <Typography variant="h6" component="h2">
-        It is a long established fact that a reader wil be distracted by the
-        readable content of a page when looking at its layout the point of using
-        Lorem Ipsum is that it has a more-or-less normal distribution letters.
-      </Typography>
+      {isLoading && Loading.circle('Loading...')}
+      {fetchError &&
+        (Report.failure('Error', `${fetchError}`), Loading.remove())}
+      {!isLoading &&
+        !fetchError &&
+        (Loading.remove(),
+        (
+          <>
+            <Rating movies={movies} />
+            <MoviesList movies={movies} />
+          </>
+        ))}
     </section>
   );
 };
