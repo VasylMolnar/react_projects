@@ -14,8 +14,19 @@ code {
 
 #App {
   color: #fff;
-  background: no-repeat url("https://images-na.ssl-images-amazon.com/images/M/MV5BNDIwMDIxNzk3Ml5BMl5BanBnXkFtZTgwMTg0MzQ4MDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg");
+  background: url("https://images-na.ssl-images-amazon.com/images/M/MV5BNDIwMDIxNzk3Ml5BMl5BanBnXkFtZTgwMTg0MzQ4MDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+
+.AspectRatio:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
 }

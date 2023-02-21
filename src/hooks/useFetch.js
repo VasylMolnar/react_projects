@@ -8,11 +8,9 @@ export const useFetch = url => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log('useEffect');
     const fetchItems = async () => {
       try {
         const response = await axios.get(`${baseURL}${url}`);
-
         setMovies(response.data);
         setFetchError(null);
       } catch (e) {
