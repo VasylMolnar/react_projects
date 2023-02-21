@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_projects=self.webpackChunkreact_projects||[]).push([[565],{565:function(e,t,n){n.r(t);n(2791);var a=n(184);t.default=function(){return(0,a.jsx)("div",{children:"Reviews (Comment) we have no Comment about film. We create in MovieDetailsPage.jsx"})}}}]);
+//# sourceMappingURL=565.012c7013.chunk.js.map
