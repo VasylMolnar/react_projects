@@ -5,6 +5,7 @@ import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 import { useFetch } from '../hooks/useFetch';
 import { Loading, Report } from 'notiflix/build/notiflix-loading-aio';
 import AspectRatio from '@mui/joy/AspectRatio';
+import { Link } from 'react-router-dom';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -58,7 +59,6 @@ const MovieDetailsPage = () => {
             >
               {movie.Images.map(el => (
                 <AspectRatio
-                  key={el.id}
                   className="AspectRatio"
                   ratio="2"
                   style={{
@@ -75,10 +75,18 @@ const MovieDetailsPage = () => {
                     src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318"
                     srcSet={el}
                     loading="lazy"
-                    alt=""
+                    alt={el.Title}
                   />
                 </AspectRatio>
               ))}
+            </div>
+            <div>
+              <Link to="cast">
+                <button className="btn btn-primary">Cast</button>
+              </Link>
+              <Link to="reviews">
+                <button className="btn btn-primary">Reviews</button>
+              </Link>
             </div>
           </div>
         )))}

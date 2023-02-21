@@ -14,15 +14,21 @@ code {
 
 #App {
   color: #fff;
-  background: url("https://images-na.ssl-images-amazon.com/images/M/MV5BNDIwMDIxNzk3Ml5BMl5BanBnXkFtZTgwMTg0MzQ4MDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg");
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #000016;
+  opacity: 0.8;
+  background: repeating-linear-gradient(-45deg, #2099ff, #2099ff 5.5px, #000016 5.5px, #000016 27.5px);
+  background-attachment: fixed;
+
+  /*
+  background: url("https://images-na.ssl-images-amazon.com/images/M/MV5BNDIwMDIxNzk3Ml5BMl5BanBnXkFtZTgwMTg0MzQ4MDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;*/
+
 }
 
 

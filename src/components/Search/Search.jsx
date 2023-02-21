@@ -5,8 +5,8 @@ const Search = ({ setSearch }) => {
     <input
       type="text"
       className="form-control"
-      placeholder="Username"
-      aria-label="Username"
+      placeholder="Film"
+      aria-label="Film"
       onChange={e => setSearch(e.target.value)}
     />
   );

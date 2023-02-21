@@ -2,7 +2,6 @@ import { React, lazy, Suspense, useContext, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Loader from './components/Loader/Loader';
-import DataContext, { DataProvider } from './context/DataContext';
 const HomePage = lazy(() => import('./page/HomePage'));
 const Cast = lazy(() => import('./page/Cast'));
 const MovieDetailsPage = lazy(() => import('./page/MovieDetailsPage'));

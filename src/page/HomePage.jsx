@@ -1,4 +1,4 @@
-import { React, useContext } from 'react';
+import { React, useContext, useEffect } from 'react';
 import { Report, Loading } from 'notiflix/build/notiflix-loading-aio';
 
 import MoviesList from '../components/MoviesList/MoviesList';
@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { ComingSoon } from './ComingSoon';
 
 const HomePage = () => {
-  const { movies, isLoading, fetchError } = useContext(DataContext);
+  const { movieReady, isLoading, fetchError } = useContext(DataContext);
 
   return (
     <section className="HomePage section">
@@ -20,8 +20,8 @@ const HomePage = () => {
         (Loading.remove(),
         (
           <>
-            <Rating movies={movies} />
-            <MoviesList movies={movies} />
+            <Rating movies={movieReady} />
+            <MoviesList movies={movieReady} />
 
             <Typography
               variant="h2"
@@ -29,7 +29,7 @@ const HomePage = () => {
               style={{
                 textAlign: 'center',
                 color: 'white',
-                marginTop: '100px',
+                margin: '100px 0px',
               }}
             >
               Coming

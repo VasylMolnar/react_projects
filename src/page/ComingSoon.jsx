@@ -1,11 +1,11 @@
-import { useState, React, useEffect } from 'react';
-import { useFetch } from '../hooks/useFetch';
+import { useState, React, useEffect, useContext } from 'react';
 import MoviesList from '../components/MoviesList/MoviesList';
+import DataContex from '../context/DataContext';
 
 export const ComingSoon = () => {
-  const { movies, isLoading, fetchError } = useFetch('comingSoon');
+  const { commingSoon, isLoading, fetchError } = useContext(DataContex);
 
-  if (movies) {
-    return <MoviesList movies={movies} />;
+  if (commingSoon) {
+    return <MoviesList movies={commingSoon} />;
   }
 };

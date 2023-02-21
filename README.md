@@ -41,4 +41,4 @@ non-existent route, it must be redirected to the home page.
 Add asynchronous JS code loading for app routes using `React.lazy()` and
 `Suspense`.
 
-![](img/1.png)
+![](img/1.png) ![](img/2.png) ![](img/3.png)

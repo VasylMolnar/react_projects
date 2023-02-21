@@ -9,7 +9,6 @@ import './index.css';
 import { Link } from 'react-router-dom';
 
 const MoviesCard = ({ movie }) => {
-  console.log(movie);
   const randomNumber = Math.floor(Math.random() * 3);
 
   return (
